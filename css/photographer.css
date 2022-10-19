@@ -1,0 +1,220 @@
+#contact_modal {
+    display: none;
+    position: fixed;
+    top: 0%;
+    left: 0;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 50px 0;
+
+}
+
+img {
+    object-fit: cover;
+}
+
+.photoProfil {
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+    border-radius: 100px;
+}
+
+.photograph-header {
+    background-color: #FAFAFA;
+    height: 300px;
+    margin: 0 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contact_button {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal {
+    border-radius: 5px;
+    background-color: #DB8876;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px;
+    margin: auto;
+}
+
+.modal header {
+    justify-content: space-between;
+    width: 100%;
+}
+
+.modal header img {
+    cursor: pointer;
+    object-fit: cover;
+}
+
+.modal header h2 {
+    font-size: 40px;
+    font-weight: normal;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 30px;
+}
+
+form label {
+    color: #312E2E;
+    font-size: 36px;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: self-start;
+    margin-bottom: 10px;
+}
+
+form input {
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+}
+
+.imageGrapher {
+    width: 340px;
+    height: 340px;
+    border-radius: 5px;
+    margin: 20px;
+}
+
+#photo-content {
+    display: flex;
+    margin: 0 100px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#grapher {
+    font-size: 40px;
+}
+
+#likeprice {
+    display: flex;
+    position: fixed;
+    background-color: #DB8876;
+    bottom: 0;
+    right: 30px;
+    font-size: 18px;
+    justify-content: space-around;
+    width: 300px;
+    align-items: center;
+    border-radius: 5px 5px 0px 0px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#modal-light {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: white;
+}
+
+.flex {
+    display: flex;
+}
+
+.imgBox {
+    width: 90vh;
+    height: 90vh;
+}
+
+.fa-solid {
+    color: #901C1C;
+}
+
+.selectTri {
+    margin: 10px 100px
+}
+
+#tri {
+    background: #901C1C;
+    color: white;
+    border: solid;
+    border-color: #901C1C;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0 15px;
+}
+
+.infoImg {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 20px;
+}
+
+.infoImg h3,
+.infoImg div {
+    color: #901C1C;
+}
+
+.M-0 {
+    margin: 0;
+}
+
+textarea {
+    width: 100%;
+    height: 181px;
+    border: none;
+    border-radius: 5px;
+}
+
+.modal header div {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.fSize {
+    font-size: 45px;
+    margin: 25px;
+}
+
+.close {
+    position: fixed;
+    bottom: 90%;
+    left: 94%;
+}
+
+.title {
+    color: black;
+    font-size: 30px;
+    position: fixed;
+    bottom: -20px;
+}
