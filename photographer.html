@@ -45,7 +45,7 @@
     <div id="modal-light">
       <h2 class="title"></h2>
       <em tabindex="1" class="fa-solid fa-chevron-left fSize"></em>
-      <div id="imgBox">
+      <div tabindex="4" id="imgBox">
 
       </div>
       <em tabindex="2" class="fa-solid fa-chevron-right fSize"></em>
@@ -60,7 +60,8 @@
           <h2 class="M-0">Contactez-moi</h2>
           <span id="grapher"></span>
         </div>
-        <img src="assets/icons/close.svg" onclick="closeModal()" alt="photo profil" />
+        <img src="assets/icons/close.svg" onclick="closeModal()" onfocus="closeModalKeyboard()" alt="photo profil"
+          tabindex="5">
       </header>
       <form>
         <div>
