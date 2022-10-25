@@ -1,4 +1,5 @@
-async function getPhotographers() {
+/* eslint-disable no-unused-vars */
+/* async function getPhotographers() {
     // Penser à remplacer par les données récupérées dans le json
     const photographers = [
         {
@@ -24,67 +25,58 @@ async function getPhotographers() {
     return ({
         photographers: [...photographers, ...photographers, ...photographers]
     })
-}
+} */
 
 async function displayData(photographers) {
-    const photographersSection = document.querySelector(".photographer_section");
+    const photographersSection = document.querySelector('.photographer_section')
 
     photographers.forEach((photographer) => {
-        //const photographerModel = photographerFactory(photographer);
-        const userCardDOM = photographerModel.getUserCardDOM();
-        photographersSection.appendChild(userCardDOM);
-    });
+        // eslint-disable-next-line no-undef
+        const userCardDOM = photographerModel.getUserCardDOM()
+        photographersSection.appendChild(userCardDOM)
+    })
 };
 
-////
+/// /
 
 const getData = async () =>
     await fetch('./data/photographers.json')
         .then(response => { if (response.ok) { return response.json() } }
         )
 async function init() {
-    const { photographers } = await getData();
-    getPhotograph(photographers);
+    const { photographers } = await getData()
+    getPhotograph(photographers)
     // Récupère les datas des photographes
-    //const { user } = await getPhotographers();
-    //displayData(photographers);
-
-
+    // const { user } = await getPhotographers();
+    // displayData(photographers);
 };
 
-init();
-
-
+init()
 
 function getPhotograph(photographers) {
-    const photographersSection = document.querySelector(".photographer_section");
+    const photographersSection = document.querySelector('.photographer_section')
     photographers.forEach(photographe => {
-        const templettePhotographers = new Photographers(photographe);
-        photographersSection.innerHTML += templettePhotographers.createHTML();
+        const templettePhotographers = new Photographers(photographe)
+        photographersSection.innerHTML += templettePhotographers.createHTML()
         // console.log(photographers)
     })
-
 }
 
-
-/**for (i = 0; i < Array.length; i++) {
+/** for (i = 0; i < Array.length; i++) {
     let nb = 3;
     result = i * nb;
-}*/
-
+} */
 
 class Photographers {
-
     constructor(data) {
-        this.name = data.name;
-        this.id = data.id;
-        this.city = data.city;
-        this.country = data.country;
-        this.portrait = data.portrait;
-        this.prix = data.price;
-        this.tagline = data.tagline;
+        this.name = data.name
+        this.id = data.id
+        this.city = data.city
+        this.country = data.country
+        this.portrait = data.portrait
+        this.prix = data.price
+        this.tagline = data.tagline
     }
-
 
     createHTML() {
         return `<article>
@@ -98,5 +90,4 @@ class Photographers {
             </article>
         `
     }
-
 }

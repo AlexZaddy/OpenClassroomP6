@@ -1,51 +1,57 @@
+/* eslint-disable space-before-function-paren */
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable no-sequences */
+/* eslint-disable array-callback-return */
+/* eslint-disable eqeqeq */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable padded-blocks */
+/* eslint-disable indent */
+/* eslint-disable no-undef */
+// eslint-disable-next-line spaced-comment
 //Mettre le code JavaScript lié à la page photographer.html
-/**je recuperez l id
- * je recupere les photographe 
+/** je recuperez l id
+ * je recupere les photographe
  * je recuper le photographe qui correspond a l'id donner
- * cree l entête de deu photographe 
- * trie les media qui correspond a l'id du photographe 
+ * cree l entête de deu photographe
+ * trie les media qui correspond a l'id du photographe
  * cree la class image et video
  * cree la media factorie
  * trie les class
- * cree fonction pour mettre a jour la galerie 
- * 
+ * cree fonction pour mettre a jour la galerie
  **/
-//lecteure d'ecran
-//metre titre de la light box
+// lecteure d'ecran
+// metre titre de la light box
 // verifier validation
-//achecke
+// achecke
 
 headerPhotograph = document.querySelector('.photograph-header')
 modalLight = document.getElementById('modal-light')
-likePrice = document.getElementById('likeprice');
+likePrice = document.getElementById('likeprice')
 photoContent = document.getElementById('photo-content')
 info = document.querySelector('.info')
-url = document.URL.split('=');
-id = url[1];
+url = document.URL.split('=')
+id = url[1]
 const selectTri = document.querySelector('#tri')
-let tabMedia = [];
-modalName = document.getElementById('grapher');
+let tabMedia = []
+modalName = document.getElementById('grapher')
 
 /// fichier
 folder = {
-    '243': 'Mimi',
-    '930': 'Ellie_Rose',
-    '82': 'Tracy',
-    '527': 'Nabeel',
-    '925': 'Rhode',
-    '195': 'Marcel',
+    243: 'Mimi',
+    930: 'Ellie_Rose',
+    82: 'Tracy',
+    527: 'Nabeel',
+    925: 'Rhode',
+    195: 'Marcel'
 }
 
-
-// req asynchrone 
+// req asynchrone
 const getData = async () =>
     await fetch('./data/photographers.json')
         .then(res => { if (res.ok) { return res.json() } })
-
-
 //
 const getPhotographers = async () => {
-    const { photographers, media } = await getData();
+    const { photographers, media } = await getData()
     result = 0
     tabIndex = 0
     tabIndexheart = 0
@@ -60,50 +66,46 @@ const getPhotographers = async () => {
             modalName.innerText = elmt.name
 
         } else {
+            // eslint-disable-next-line no-unused-expressions
             ''
         }
-    });
+    })
 
-    // creation des elements dans la page 
+    // creation des elements dans la page
     media.map(elmt => {
         if (elmt.photographerId == id) {
             objImage = new MediaFactorie(elmt)
             photoContent.innerHTML += objImage.creatHtml(folder[id])
             //
             tabIndex++
-            if (tabIndex > tabIndexheart)
-                tabIndexheart = tabIndex + 1
-            else
-                ''
+            if (tabIndex > tabIndexheart) { tabIndexheart = tabIndex + 1 } else { '' }
 
-            if (tabIndex == tabIndexheart)
-                tabIndex = tabIndexheart + 1
+            if (tabIndex == tabIndexheart) { tabIndex = tabIndexheart + 1 }
 
             nb = elmt.price
-            result = nb + result;
-            //console.log(objImage)
+            result = nb + result
+            // console.log(objImage)
 
         }
     })
-
 
     // triller le contenus selon la l'option choisie
     selectTri.addEventListener('change', (event) => {
         // console.log(event.target.value)
         switch (event.target.value) {
             case 'Date':
-                tabMedia = [];
-                photoContent.innerHTML = '';
+                tabMedia = []
+                photoContent.innerHTML = ''
                 media.map(elmt => {
                     if (elmt.photographerId == id) {
-                        //sort 
+                        // sort
                         tabMedia.push(elmt)
                         sortObj(tabMedia, elmt.date, elmt.date, event.target.value)
 
                     }
                 }),
                     //
-                    //photoContent.innerHTML = '';
+                    // photoContent.innerHTML = '';
                     tabMedia.forEach(elmt => {
                         build = new MediaFactorie(elmt)
                         photoContent.innerHTML += build.creatHtml(folder[id])
@@ -111,21 +113,20 @@ const getPhotographers = async () => {
                         ligthBox()
                         focusElmt()
 
-
                     })
-                break;
+                break
 
             case 'titre':
-                tabMedia = [];
+                tabMedia = []
                 media.map(elmt => {
                     if (elmt.photographerId == id) {
-                        //sort 
+                        // sort
                         tabMedia.push(elmt)
                         sortObj(tabMedia, elmt.date, elmt.date, event.target.value)
                     }
                 }),
                     //
-                    photoContent.innerHTML = '';
+                    photoContent.innerHTML = ''
                 tabMedia.forEach(elmt => {
                     build = new MediaFactorie(elmt)
 
@@ -134,21 +135,20 @@ const getPhotographers = async () => {
                     ligthBox()
                     focusElmt()
 
-
                 })
-                break;
+                break
 
             case 'popularite':
-                tabMedia = [];
+                tabMedia = []
                 media.map(elmt => {
                     if (elmt.photographerId == id) {
-                        //sort 
+                        // sort
                         tabMedia.push(elmt)
                         sortObj(tabMedia, elmt.date, elmt.date, event.target.value)
                     }
                 }),
                     //
-                    photoContent.innerHTML = '';
+                    photoContent.innerHTML = ''
                 tabMedia.forEach(elmt => {
                     build = new MediaFactorie(elmt)
 
@@ -157,14 +157,13 @@ const getPhotographers = async () => {
                     ligthBox()
                     focusElmt()
 
-
                 })
-                break;
+                break
             default:
                 focusElmt()
                 addLike()
                 ligthBox()
-                break;
+                break
         }
     })
     focusElmt()
@@ -182,7 +181,7 @@ const focusElmt = () => {
     for (let i = 0; i < tabDIV.length; i++) {
         tabDIV[i].addEventListener('focus', () => {
             tabDIV[i].addEventListener('keydown', (e) => {
-                if (e.key == "Enter") {
+                if (e.key == 'Enter') {
                     tabDIV[i].children[0].click()
                 }
             })
@@ -192,29 +191,28 @@ const focusElmt = () => {
     for (let i = 0; i < heart.length; i++) {
         heart[i].addEventListener('focus', () => {
             heart[i].addEventListener('keydown', (e) => {
-                e.key == "f" ? heart[i].click() : ''
+                e.key == 'f' ? heart[i].click() : ''
             })
         })
     }
 
 }
 
-
 const launch = () => {
     getPhotographers()
 }
 
-//header Photographer class pour construire le header
+// header Photographer class pour construire le header
 class PagePhotographers {
 
     constructor(data) {
-        this.name = data.name;
-        this.id = data.id;
-        this.city = data.city;
-        this.country = data.country;
-        this.portrait = data.portrait;
-        this.prix = data.price;
-        this.tagline = data.tagline;
+        this.name = data.name
+        this.id = data.id
+        this.city = data.city
+        this.country = data.country
+        this.portrait = data.portrait
+        this.prix = data.price
+        this.tagline = data.tagline
     }
 
     infoPhotographer() {
@@ -230,9 +228,9 @@ class PagePhotographers {
             <img class="photoProfil" src="assets/photographers/${this.portrait}">
         `
     }
+
     // prix a afficher
     Price() {
-
 
         return `
             <div>${this.prix}€/jour</div>
@@ -241,16 +239,16 @@ class PagePhotographers {
 
 }
 
-
 class ImagePhotographers {
+    // eslint-disable-next-line space-before-function-paren
     constructor(data) {
-        this.photographerId = data.photographerId;
-        this.title = data.title;
-        this.date = data.date;
-        this.id = data.id;
-        this.image = data.image;
-        this.likes = data.likes;
-        this.price = data.price;
+        this.photographerId = data.photographerId
+        this.title = data.title
+        this.date = data.date
+        this.id = data.id
+        this.image = data.image
+        this.likes = data.likes
+        this.price = data.price
 
     }
 
@@ -269,6 +267,7 @@ class ImagePhotographers {
             </div>
             `
     }
+
     like(result) {
         return `
        <p class="heart">${result}<i class="fa-solid fa-heart"></i></p>
@@ -279,19 +278,17 @@ class ImagePhotographers {
 
 class PhotographerVideo {
     constructor(data) {
-        this.photographerId = data.photographerId;
-        this.title = data.title;
-        this.date = data.date;
-        this.id = data.id;
-        this.likes = data.likes;
-        this.price = data.price;
-        this.video = data.video;
-
+        this.photographerId = data.photographerId
+        this.title = data.title
+        this.date = data.date
+        this.id = data.id
+        this.likes = data.likes
+        this.price = data.price
+        this.video = data.video
 
     }
 
     creatHtml(folder) {
-
 
         return `
         <div tabindex="${tabIndex}">
@@ -307,9 +304,6 @@ class PhotographerVideo {
         `
     }
 
-
-
-
 }
 class MediaFactorie {
     constructor(data) {
@@ -321,12 +315,7 @@ class MediaFactorie {
     }
 }
 
-
-
-
-
-
-//ligthBox 
+// ligthBox
 addLike = () => {
     heart = document.querySelector('.heart')
     tagImgBox = photoContent.children
@@ -334,9 +323,9 @@ addLike = () => {
         tagImgBox[i].children[1].children[1].addEventListener('click', () => {
             //
             like = parseInt(tagImgBox[i].children[1].children[1].innerHTML) + 1
-            tagImgBox[i].children[1].children[1].innerHTML = like + `<i class="fa-solid fa-heart"></i>`
+            tagImgBox[i].children[1].children[1].innerHTML = like + '<i class="fa-solid fa-heart"></i>'
             //
-            addHeart = parseInt(heart.innerHTML) + 1;
+            addHeart = parseInt(heart.innerHTML) + 1
             heart.innerHTML = addHeart + '<i class="fa-solid fa-heart"></i>'
 
         })
@@ -344,21 +333,20 @@ addLike = () => {
     }
 }
 
-//modal img
+// modal img
 ligthBox = () => {
     tagImgBox = photoContent.children
     boxImglight = document.querySelector('.imgBox')
-    let title = document.querySelector('.title');
+    const title = document.querySelector('.title')
     croix = document.querySelector('.fa-xmark')
     right = document.querySelector('.fa-chevron-right')
     left = document.querySelector('.fa-chevron-left')
     let n = null
 
-
-    croix.addEventListener('click', () => { modalLight.style.display = 'none'; })
-    croix.addEventListener('keydown', (e) => { e.key == "Enter" ? modalLight.style.display = 'none' : '' })
-    left.addEventListener('click', () => { n--;; back(); flipImg(); })
-    right.addEventListener('click', () => { n++;; back(); flipImg(); })
+    croix.addEventListener('click', () => { modalLight.style.display = 'none' })
+    croix.addEventListener('keydown', (e) => { e.key == 'Enter' ? modalLight.style.display = 'none' : '' })
+    left.addEventListener('click', () => { n--; back(); flipImg() })
+    right.addEventListener('click', () => { n++; back(); flipImg() })
 
     document.addEventListener('keydown', (event) => {
 
@@ -367,18 +355,15 @@ ligthBox = () => {
             back()
             flipImg()
 
-        }
-        else if (event.key == 'ArrowRight') {
+        } else if (event.key == 'ArrowRight') {
             console.log(event.key)
             n++
             back()
             flipImg()
-        }
-        else {
+        } else {
             ''
         }
     })
-
 
     for (let i = 0; i < tagImgBox.length; i++) {
         //
@@ -389,40 +374,36 @@ ligthBox = () => {
             //
             n = tagImgBox[i].children[0].id
             imgLight = document.getElementById('imgBox')
-            modalLight.style.display = 'flex';
+            modalLight.style.display = 'flex'
             //
             back = () => {
                 if (n > tagImgBox.length) {
-                    if (document.getElementById(n) && document.getElementById(n).tagName == "VIDEO") {
+                    if (document.getElementById(n) && document.getElementById(n).tagName == 'VIDEO') {
                         n = 0
                         imgLight.innerHTML = `<video controls class="imgBox" src="${document.getElementById(n).attributes.src.value}" alt="image du photographe"></video>`
                         title.innerText = tagImgBox[n].children[1].children[0].innerText
-                    }
-                    else if (document.getElementById(n) && document.getElementById(n).tagName != "VIDEO") {
+                    } else if (document.getElementById(n) && document.getElementById(n).tagName != 'VIDEO') {
                         imgLight.innerHTML = `<img class="imgBox" src="${document.getElementById(n).attributes.src.value}" alt="image du photographe">`
                         title.innerText = tagImgBox[n].children[1].children[0].innerText
-
 
                     } else {
                         n = 0
                     }
 
                 } else if (n <= -1) {
-                    if (document.getElementById(n) && document.getElementById(n).tagName == "VIDEO") {
+                    if (document.getElementById(n) && document.getElementById(n).tagName == 'VIDEO') {
                         n = 0
                         imgLight.innerHTML = `<video controls class="imgBox" src="${document.getElementById(n).attributes.src.value}" alt="image du photographe"></video>`
                         title.innerText = tagImgBox[n].children[1].children[0].innerText
-                    }
-                    else if (document.getElementById(n) && document.getElementById(n).tagName != "VIDEO") {
+                    } else if (document.getElementById(n) && document.getElementById(n).tagName != 'VIDEO') {
                         imgLight.innerHTML = `<img class="imgBox" src="${document.getElementById(n).attributes.src.value}" alt="image du photographe">`
                         title.innerText = tagImgBox[n].children[1].children[0].innerText
 
-
                     } else {
-                        n = tagImgBox.length;
+                        n = tagImgBox.length
 
-                        //imgLight.innerHTML = `<img class="imgBox" src="${document.getElementById(n)?.attributes.src.value}" alt="image du photographe">`
-                        ///title.innerText = tagImgBox[n]?.children[1].children[0].innerText
+                        // imgLight.innerHTML = `<img class="imgBox" src="${document.getElementById(n)?.attributes.src.value}" alt="image du photographe">`
+                        /// title.innerText = tagImgBox[n]?.children[1].children[0].innerText
 
                     }
 
@@ -432,16 +413,16 @@ ligthBox = () => {
 
             flipImg = () => {
                 //
-                if (n !== tagImgBox[i].children[0].id && document.getElementById(n) && document.getElementById(n).tagName != "VIDEO") {
+                if (n !== tagImgBox[i].children[0].id && document.getElementById(n) && document.getElementById(n).tagName != 'VIDEO') {
                     imgLight.innerHTML = `<img class="imgBox" src="${document.getElementById(n).attributes.src.value}" alt="image du photographe">`
                     title.innerText = tagImgBox[n].children[1].children[0].innerText
-                    //imgLight.attributes.src.value = tagImgBox[i].children[0].attributes.src.value
+                    // imgLight.attributes.src.value = tagImgBox[i].children[0].attributes.src.value
 
                 } else if (n !== tagImgBox[i].children[0].id && document.getElementById(n) && document.getElementById(n).localName == 'video') {
                     imgLight.innerHTML = '<video controls class="imgBox" src="' + document.getElementById(n).attributes.src.value + '"></video>'
                     title.innerText = tagImgBox[n].children[1].children[0].innerText
                 } else if (n == tagImgBox[i].children[0].id) {
-                    if (document.getElementById(n) && document.getElementById(n).tagName != "VIDEO") {
+                    if (document.getElementById(n) && document.getElementById(n).tagName != 'VIDEO') {
                         imgLight.innerHTML = `<img class="imgBox" src="${document.getElementById(n).attributes.src.value}" alt="image du photographe">`
                         title.innerText = tagImgBox[n].children[1].children[0].innerText
                     } else {
@@ -451,8 +432,7 @@ ligthBox = () => {
 
                 }
 
-
-                //title.innerHTML = tagImgBox[i].children[1].children[0].innerText
+                // title.innerHTML = tagImgBox[i].children[1].children[0].innerText
             }
 
             flipImg()
@@ -465,32 +445,24 @@ ligthBox = () => {
 function sortObj(array, a, b, value) {
     if (value == 'Date') {
         array.sort((a, b) => {
-            if (a.date > b.date)
-                return -1;
-            if (a.date < b.date)
-                return 1;
-            return 0;
+            if (a.date > b.date) { return -1 }
+            if (a.date < b.date) { return 1 }
+            return 0
         })
     } else if (value == 'popularite') {
         array.sort((a, b) => {
-            if (a.likes > b.likes)
-                return -1;
-            if (a.likes < b.likes)
-                return 1;
-            return 0;
+            if (a.likes > b.likes) { return -1 }
+            if (a.likes < b.likes) { return 1 }
+            return 0
         })
     } else {
         array.sort((a, b) => {
-            if (a.title[0] < b.title[0])
-                return -1;
-            if (a.title[0] > b.title[0])
-                return 1;
-            return 0;
+            if (a.title[0] < b.title[0]) { return -1 }
+            if (a.title[0] > b.title[0]) { return 1 }
+            return 0
         })
     }
 
 }
-
-
 
 launch()
